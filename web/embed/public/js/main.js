@@ -62,7 +62,7 @@ new class {
         this.data["resultContainer"].classList.remove("shortener__result-container-show");
     }
     setLink(url) {
-        this.data["linkURL"].href = url;
+        //this.data["linkURL"].href = url;
         this.data["linkText"].textContent = url;
     }
     async post(url) {
