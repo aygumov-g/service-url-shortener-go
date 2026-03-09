@@ -1,0 +1,131 @@
+:root {
+    --hide-button-bgcolor: #b0bdd633;
+    --hide-button-color: #475a8080;
+    --show-button-hover-bgcolor: #ffe479;
+    --show-button-bgcolor: #ffdd57;
+    --show-button-color: #2f3747;
+}
+
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background-color: #eff2f7;
+}
+
+div.shortener__main-page-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+}
+
+div.shortener__main-container {
+    width: 100%;
+    max-width: 700px;
+    padding: 0 16px;
+}
+
+p.shortener__description-text {
+    margin-bottom: 10px;
+    font-size: clamp(16px, 2vw, 22px);
+    color: #1a2b4d99;
+}
+
+div.shortener__form-container {
+    display: flex;
+    gap: 10px;
+}
+
+div.shortener__form-container input {
+    flex: 1;
+    padding: 17px;
+    font-size: 16px;
+    background-color: white;
+    border-radius: 15px;
+    border: 1px solid #ccc;
+}
+
+div.shortener__form-container input:focus {
+    outline: none;
+    border-color: #4f46e5;
+}
+
+div.shortener__post-button-container {
+    padding: 17px 23px;
+    border-radius: 15px;
+    border: none;
+}
+
+div.shortener__post-button-container-hide {
+    background-color: var(--hide-button-bgcolor);
+    cursor: default;
+}
+
+div.shortener__post-button-container-show {
+    background-color: var(--show-button-bgcolor);
+    cursor: pointer;
+}
+
+div.shortener__post-button-container-show:hover {
+    background-color: var(--show-button-hover-bgcolor);
+}
+
+div.shortener__post-button-container-show:active {
+    transform: scale(0.95);
+}
+
+div.shortener__post-button-text {
+    font-size: 16px;
+}
+
+div.shortener__post-button-text-hide {
+    color: var(--hide-button-color);
+}
+
+div.shortener__post-button-text-show {
+    color: var(--show-button-color);
+}
+
+p.shortener__error-text {
+    font-size: clamp(13px, 2vw, 16px);
+    margin-top: 5px;
+    font-weight: bold;
+    color: #ff5252;
+}
+
+p.shortener__error-text-hide {
+    display: none;
+}
+
+p.shortener__error-text-show {
+    display: block;
+}
+
+div.shortener__result-container {
+    background: white;
+    padding: 15px 19px;
+    margin-top: 20px;
+    border-radius: 15px;
+}
+
+div.shortener__result-container-hide {
+    display: none;
+}
+
+div.shortener__result-container-show {
+    display: flex;
+}
+
+div.shortener__result-container a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 7px;
+}
+
+div.shortener__result-container svg {
+    flex-shrink: 0;
+}
+
+div.shortener__result-container span {
+    font-size: 19px;
+}
