@@ -1,6 +1,10 @@
 services:
+  service-url-shortener-db:
+    networks:
+      - default
   service-url-shortener-app-go:
     networks:
+      - default
       - reverse-proxy
 
 networks:
