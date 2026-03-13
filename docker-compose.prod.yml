@@ -1,0 +1,8 @@
+services:
+  service-url-shortener-app-go:
+    networks:
+      - reverse-proxy
+
+networks:
+  reverse-proxy:
+    external: true

@@ -31,8 +31,6 @@ services:
       - POSTGRES_DB=$POSTGRES_DB
       - SHORT_CODE_ALPHABET=$SHORT_CODE_ALPHABET
       - SHORT_CODE_SECRET=$SHORT_CODE_SECRET
-    ports:
-      - "$APP_PORT:$APP_PORT"
     depends_on:
       service-url-shortener-db:
         condition: service_healthy

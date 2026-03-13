@@ -1,0 +1,4 @@
+services:
+  service-url-shortener-app-go:
+    ports:
+      - "$APP_PORT:$APP_PORT"
