@@ -30,7 +30,7 @@ div.shortener__main-container {
 p.shortener__title-text {
     margin: 0px;
     margin-left: 15px;
-    font-size: clamp(12px, 2vw, 18px);
+    font-size: 18px;
     color: var(--gray-color);
 }
 
@@ -43,8 +43,8 @@ div.shortener__form-container {
 div.shortener__form-container input {
     flex: 1;
     color: white;
-    padding: clamp(11px, 2vw, 17px);
-    font-size: clamp(20px, 2vw, 24px);
+    padding: 17px;
+    font-size: 24px;
     background-color: var( --accent-color-2);
     border-radius: 15px;
     border: none;
@@ -63,8 +63,8 @@ div.shortener__form-container input::placeholder {
 p.shortener__error-text {
     margin: 0px;
     margin-left: 15px;
-    margin-bottom: clamp(6px, 2vw, 10px);
-    font-size: clamp(12px, 2vw, 18px);
+    margin-bottom: 10px;
+    font-size: 18px;
     color: var(--error-color);
 }
 
@@ -79,7 +79,7 @@ p.shortener__error-text-show {
 p.shortener__description-text {
     margin: 0px;
     margin-left: 15px;
-    font-size: clamp(12px, 2vw, 18px);
+    font-size: 18px;
     color: var(--gray-color);
 }
 
@@ -94,7 +94,7 @@ p.shortener__description-text-show {
 p.shortener__footer-text {
     margin: 0px;
     margin-left: 15px;
-    font-size: clamp(12px, 2vw, 18px);
+    font-size: 18px;
     color: var(--gray-color);
 }
 
@@ -119,7 +119,7 @@ p.shortener__result-title-text {
     margin: 0px;
     margin-top: 60px;
     margin-left: 15px;
-    font-size: clamp(12px, 2vw, 18px);
+    font-size: 18px;
     color: var(--gray-color);
 }
 
@@ -149,16 +149,16 @@ div.shortener__result-block-show {
 div.shortener__result-block a {
     display: flex;
     color: var(--accent-color-4);
-    padding: clamp(11px, 2vw, 17px);
-    font-size: clamp(20px, 2vw, 24px);
+    padding: 17px;
+    font-size: 24px;
     text-decoration: none;
     align-items: center;
     gap: 7px;
 }
 
 div.shortener__result-block svg {
-    width: clamp(18px, 2vw, 22px);
-    height: clamp(18px, 2vw, 22px);
+    width: 22px;
+    height: 22px;
 }
 
 div.shortener__result-block p {
@@ -168,7 +168,7 @@ div.shortener__result-block p {
 p.shortener__result-description-text {
     margin: 0px;
     margin-left: 15px;
-    font-size: clamp(12px, 2vw, 18px);
+    font-size: 18px;
     color: var(--gray-color);
 }
 

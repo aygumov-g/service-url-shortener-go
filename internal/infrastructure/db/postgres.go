@@ -16,8 +16,13 @@ type Storage struct {
 
 func New(cfg config.DBConfig) (*Storage, error) {
 	db, err := gorm.Open(postgres.Open(fmt.Sprintf(
-		"host=%s user=%s password=%s dbname=%s sslmode=%s ",
-		cfg.Host,
+		// "host=%s user=%s password=%s dbname=%s sslmode=%s ",
+		// cfg.Host,
+		// cfg.User,
+		// cfg.Password,
+		// cfg.Name,
+		// cfg.SSLMode,
+		"host=localhost port=15391 user=%s password=%s dbname=%s sslmode=%s ",
 		cfg.User,
 		cfg.Password,
 		cfg.Name,
