@@ -1,4 +1,4 @@
-package redirect
+package get_link
 
 import (
 	link_d "github.com/aygumov-g/service-url-shortener-go/internal/domain/link"
@@ -6,8 +6,4 @@ import (
 
 type GetLinkUsecase interface {
 	Execute(code string) (*link_d.Link, error)
-}
-
-type UpdateLinkUsecase interface {
-	Execute(id int64) error
 }

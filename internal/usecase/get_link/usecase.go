@@ -1,28 +1,28 @@
-package redirect
+package get_link
 
 import (
 	link_d "github.com/aygumov-g/service-url-shortener-go/internal/domain/link"
 )
 
-type Redirect struct {
+type GetLink struct {
 	linksRepo LinkRepository
 	gen       Generator
 	clk       Clock
 }
 
-func NewRedirect(
+func NewGetLink(
 	linksRepo LinkRepository,
 	gen Generator,
 	clk Clock,
-) *Redirect {
-	return &Redirect{
+) *GetLink {
+	return &GetLink{
 		linksRepo: linksRepo,
 		gen:       gen,
 		clk:       clk,
 	}
 }
 
-func (uc *Redirect) Execute(code string) (*link_d.Link, error) {
+func (uc *GetLink) Execute(code string) (*link_d.Link, error) {
 	id, err := uc.gen.Decode(code)
 	if err == nil {
 		link, err := uc.linksRepo.GetByID(id)

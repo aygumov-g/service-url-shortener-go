@@ -7,17 +7,27 @@ import (
 )
 
 type handler struct {
-	redirectUC RootUsecase
+	get_linkUC    GetLinkUsecase
+	update_linkUC UpdateLinkUsecase
 }
 
-func NewHandler(redirectUC RootUsecase) *handler {
-	return &handler{redirectUC: redirectUC}
+func NewHandler(get_linkUC GetLinkUsecase, update_linkUC UpdateLinkUsecase) *handler {
+	return &handler{
+		get_linkUC:    get_linkUC,
+		update_linkUC: update_linkUC,
+	}
 }
 
 func (h *handler) Execute(w http.ResponseWriter, r *http.Request) {
-	link, err := h.redirectUC.Execute(chi.URLParam(r, "code"))
+	code := chi.URLParam(r, "code")
+	link, err := h.get_linkUC.Execute(code)
 	if err != nil {
 		http.Error(w, "link not found", http.StatusNotFound)
+		return
+	}
+
+	if err := h.update_linkUC.Execute(link.ID); err != nil {
+		http.Error(w, "internal error", http.StatusInternalServerError)
 		return
 	}
 

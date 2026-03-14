@@ -1,4 +1,4 @@
-package redirect
+package get_link
 
 import (
 	"time"
@@ -7,7 +7,6 @@ import (
 )
 
 type LinkRepository interface {
-	Update(id int64, now time.Time) error
 	GetByID(id int64) (*link_d.Link, error)
 	GetByCustomCode(code string) (*link_d.Link, error)
 }

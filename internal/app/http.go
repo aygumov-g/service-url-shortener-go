@@ -9,12 +9,14 @@ import (
 	"github.com/aygumov-g/service-url-shortener-go/internal/infrastructure/db"
 	link_db "github.com/aygumov-g/service-url-shortener-go/internal/repository/link"
 	create_link_handler "github.com/aygumov-g/service-url-shortener-go/internal/transport/http/handlers/create_link"
+	get_link_handler "github.com/aygumov-g/service-url-shortener-go/internal/transport/http/handlers/get_link"
 	index_handler "github.com/aygumov-g/service-url-shortener-go/internal/transport/http/handlers/index"
 	redirect_handler "github.com/aygumov-g/service-url-shortener-go/internal/transport/http/handlers/redirect"
 	"github.com/aygumov-g/service-url-shortener-go/internal/transport/http/router"
 	"github.com/aygumov-g/service-url-shortener-go/internal/transport/http/server"
 	create_link_uc "github.com/aygumov-g/service-url-shortener-go/internal/usecase/create_link"
-	redirect_uc "github.com/aygumov-g/service-url-shortener-go/internal/usecase/redirect"
+	get_link_uc "github.com/aygumov-g/service-url-shortener-go/internal/usecase/get_link"
+	update_link_uc "github.com/aygumov-g/service-url-shortener-go/internal/usecase/update_link"
 	"github.com/aygumov-g/service-url-shortener-go/pkg/clock"
 	"github.com/aygumov-g/service-url-shortener-go/pkg/shortcode"
 	"github.com/aygumov-g/service-url-shortener-go/web/embed"
@@ -37,12 +39,14 @@ func buildHTTP(
 
 	linkRepo := link_db.NewRepository(db.Get())
 
-	rootUsecase := redirect_uc.NewRedirect(linkRepo, gen, clk)
+	get_linkUsecase := get_link_uc.NewGetLink(linkRepo, gen, clk)
+	update_linkUsecase := update_link_uc.NewUpdateLink(linkRepo, clk)
 	create_linkUsecase := create_link_uc.NewCreateLink(linkRepo, gen, clk, cfg.App.Domain)
 
 	indexHandler := index_handler.NewHandler()
-	redirectHandler := redirect_handler.NewHandler(rootUsecase)
+	get_linkHandler := get_link_handler.NewHandler(get_linkUsecase, cfg.App.Domain)
 	create_linkHandler := create_link_handler.NewHandler(create_linkUsecase, cfg.App.Domain)
+	redirectHandler := redirect_handler.NewHandler(get_linkUsecase, update_linkUsecase)
 
 	r := router.NewRouter()
 	r.Handle("/stt/*",
@@ -52,6 +56,7 @@ func buildHTTP(
 	)
 	r.Get("/", indexHandler.Execute)
 	r.Post("/api/links", create_linkHandler.Execute)
+	r.Get("/api/links/{code}", get_linkHandler.Execute)
 	r.Get("/{code}", redirectHandler.Execute)
 
 	return server.NewServer(cfg.App.Port, r.Mux), nil
