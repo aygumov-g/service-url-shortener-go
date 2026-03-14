@@ -23,7 +23,7 @@ new class {
         });
         this.data.copyButton.addEventListener("click", () => {
             try {
-                navigator.clipboard.writeText(this.data.linkURL.href).then(() => {
+                navigator.clipboard.writeText(this.data.linkURL.href.replace("xn--q1a", "с")).then(() => {
                     alert("Скопировано!");
                 }).catch(error => {
                     alert(`Ошибка копирования: ${error}`)
