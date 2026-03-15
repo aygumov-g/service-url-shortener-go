@@ -2,10 +2,10 @@
     --accent-main-color: rgb(255, 100, 0);
     --accent-color-1: color-mix(in srgb, var(--accent-main-color), black 95%);
     --accent-color-2: color-mix(in srgb, var(--accent-main-color), black 80%);
-    --accent-color-3: color-mix(in srgb, var(--accent-main-color), black 85%);
+    --accent-color-3: color-mix(in srgb, var(--accent-main-color), black 83%);
     --accent-color-4: color-mix(in srgb, var(--accent-main-color), black 15%);
-    --accent-color-5: color-mix(in srgb, var(--accent-main-color), black 83%);
     --error-color: rgb(255, 30, 30);
+    --white-color: rgb(255, 255, 255);
     --gray-color: rgb(110, 110, 110);
 }
 
@@ -15,23 +15,52 @@ body {
     background-color: var(--accent-color-1);
 }
 
-div.shortener__main-page-container {
-    display: flex;
+p {
+    margin: 0;
+}
+
+div.default-hide {
+    display: none;
+}
+
+div.default-show {
+    display: block;
+}
+
+div.shortener__page-container {
     justify-content: center;
     padding-top: 40px;
+    display: flex;
 }
 
-div.shortener__main-container {
-    width: 100%;
+div.shortener__content-container {
     max-width: 700px;
     padding: 0 16px;
+    width: 100%;
 }
 
-p.shortener__title-text {
+div.shortener__section-container {
+    margin-bottom: 25px;
+}
+
+div.shortener__separate-text-container {
+    color: var(--gray-color);
     margin: 0px;
     margin-left: 15px;
     font-size: 18px;
-    color: var(--gray-color);
+}
+
+div.shortener__separate-text-container button {
+    padding: 0;
+    font: inherit;
+    color: var(--accent-color-4);
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+div.shortener__error-text-container {
+    color: var(--error-color);
 }
 
 div.shortener__form-container {
@@ -42,149 +71,45 @@ div.shortener__form-container {
 
 div.shortener__form-container input {
     flex: 1;
-    color: white;
+    color: var(--white-color);
     padding: 17px;
-    font-size: 24px;
+    font-size: 27px;
     background-color: var( --accent-color-2);
     border-radius: 15px;
     border: none;
 }
 
 div.shortener__form-container input:focus {
-    background-color: var( --accent-color-5);
+    background-color: var( --accent-color-3);
     outline: none;
     border: none;
 }
 
 div.shortener__form-container input::placeholder {
-    color: white;
+    color: var(--white-color);
 }
 
-p.shortener__error-text {
-    margin: 0px;
-    margin-left: 15px;
-    margin-bottom: 10px;
-    font-size: 18px;
-    color: var(--error-color);
-}
-
-p.shortener__error-text-hide {
-    display: none;
-}
-
-p.shortener__error-text-show {
-    display: block;
-}
-
-p.shortener__description-text {
-    margin: 0px;
-    margin-left: 15px;
-    font-size: 18px;
-    color: var(--gray-color);
-}
-
-p.shortener__description-text-hide {
-    display: none;
-}
-
-p.shortener__description-text-show {
-    display: block;
-}
-
-p.shortener__footer-text {
-    margin: 0px;
-    margin-left: 15px;
-    font-size: 18px;
-    color: var(--gray-color);
-}
-
-p.shortener__footer-text-hide {
-    display: none;
-}
-
-p.shortener__footer-text-show {
-    display: block;
-}
-
-p.shortener__footer-text button {
-    padding: 0;
-    font: inherit;
-    color: var(--accent-color-4);
-    border: none;
-    background: none;
-    cursor: pointer;
-}
-
-p.shortener__result-title-text {
-    margin: 0px;
-    margin-top: 60px;
-    margin-left: 15px;
-    font-size: 18px;
-    color: var(--gray-color);
-}
-
-p.shortener__result-title-text-hide {
-    display: none;
-}
-
-p.shortener__result-title-text-show {
-    display: block;
-}
-
-div.shortener__result-block {
+div.shortener__result-block-container {
     background-color: var(--accent-color-3);
     border-radius: 15px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     margin-top: 5px;
 }
 
-div.shortener__result-block-hide {
-    display: none;
-}
-
-div.shortener__result-block-show {
-    display: flex;
-}
-
-div.shortener__result-block a {
-    display: flex;
-    color: var(--accent-color-4);
+div.shortener__result-link-container {
     padding: 17px;
-    font-size: 24px;
-    text-decoration: none;
+    font-size: 27px;
+}
+
+div.shortener__result-link-container a {
     align-items: center;
+    text-decoration: none;
+    color: var(--accent-color-4);
+    display: flex;
     gap: 7px;
 }
 
-div.shortener__result-block svg {
-    width: 22px;
-    height: 22px;
-}
-
-div.shortener__result-block p {
-    margin: 0;
-}
-
-p.shortener__result-description-text {
-    margin: 0px;
-    margin-left: 15px;
-    font-size: 18px;
-    color: var(--gray-color);
-}
-
-p.shortener__result-description-text-hide {
-    display: none;
-}
-
-p.shortener__result-description-text-show {
-    display: block;
-}
-
-p.shortener__result-description-text button {
-    padding: 0;
-    font: inherit;
-    color: var(--accent-color-4);
-    border: none;
-    background: none;
-    cursor: pointer;
+div.shortener__result-link-container a svg {
+    width: 24px;
+    height: 24px;
 }
