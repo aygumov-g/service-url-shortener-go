@@ -11,6 +11,7 @@ type response struct {
 	ShortURL       string     `json:"short_url"`
 	ShortCode      string     `json:"short_code"`
 	CustomCode     *string    `json:"custom_code"`
+	Domain         string     `json:"domain"`
 	ClickCount     int64      `json:"clicks"`
 	LastAccessedAt *time.Time `json:"last_accessed_at"`
 	CreatedAt      time.Time  `json:"created_at"`
@@ -22,6 +23,7 @@ func (r response) toResponse(link *link_d.Link, code string, domain string) *res
 		ShortURL:       "https://" + domain + "/" + code,
 		ShortCode:      code,
 		CustomCode:     link.CustomCode,
+		Domain:         domain,
 		ClickCount:     link.ClickCount,
 		LastAccessedAt: link.LastAccessedAt,
 		CreatedAt:      link.CreatedAt,

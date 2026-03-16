@@ -1,9 +1,10 @@
 :root {
     --accent-main-color: rgb(255, 100, 0);
-    --accent-color-1: color-mix(in srgb, var(--accent-main-color), black 95%);
+    --accent-color-1: color-mix(in srgb, var(--accent-main-color), black 93%);
     --accent-color-2: color-mix(in srgb, var(--accent-main-color), black 80%);
     --accent-color-3: color-mix(in srgb, var(--accent-main-color), black 83%);
     --accent-color-4: color-mix(in srgb, var(--accent-main-color), black 15%);
+    --accent-color-5: color-mix(in srgb, var(--accent-main-color), white 45%);
     --error-color: rgb(255, 30, 30);
     --white-color: rgb(255, 255, 255);
     --gray-color: rgb(110, 110, 110);
@@ -96,6 +97,11 @@ div.shortener__result-block-container {
     margin-top: 5px;
 }
 
+div.shortener__result-block-container hr {
+    margin: 0 17px;
+    border-color: var(--gray-color);
+}
+
 div.shortener__result-link-container {
     padding: 17px;
     font-size: 27px;
@@ -112,4 +118,18 @@ div.shortener__result-link-container a {
 div.shortener__result-link-container a svg {
     width: 24px;
     height: 24px;
+}
+
+div.shortener__result-line-container {
+    width: 90%;
+    padding: 17px;
+    font-size: 27px;
+}
+
+div.shortener__result-line-container p {
+    color: var(--white-color);
+}
+
+div.shortener__result-line-container p span {
+    color: var(--accent-color-5);
 }

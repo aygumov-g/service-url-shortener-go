@@ -11,7 +11,7 @@
 <body>
     <div class="shortener__page-container">
         <div class="shortener__content-container">
-            <div id="section_1" class="shortener__section-container">
+            <div id="section_1Container" class="shortener__section-container">
                 <div class="shortener__separate-text-container">
                     <p>ПОЛЬЗОВАТЕЛЬСКАЯ ССЫЛКА</p>
                 </div>
@@ -19,7 +19,7 @@
                     <input id="inp" type="text" placeholder="Введите ссылку...">
                 </div>
                 <div id="errorTextContainer" class="shortener__separate-text-container shortener__error-text-container">
-                    <p id="errorText">На сервере произошла ошибка</p>
+                    <p id="errorText"></p>
                 </div>
                 <div id="descriptionTextContainer" class="shortener__separate-text-container">
                     <p>Вы можете получить <b>короткую ссылку</b> практически на любой ресурс в интернете. В этом случае любой, кто попытается перейти по такой ссылке, попадёт на введённый вами URL адрес. При вводе ссылки вы можете не указывать <b>https</b> или <b>http</b> в её начале (например, <b>google.com</b>). В таком случае протокол <b>https</b> будет добавлен автоматически.</p>
@@ -34,20 +34,51 @@
                 </div>
                 <div class="shortener__result-block-container">
                     <div class="shortener__result-link-container">
-                        <a id="linkURL" href="https://d.a.g.a">
+                        <a id="linkResultURL">
                             <div>
                                 <svg fill="currentColor" viewBox="0 0 22 22">
                                     <path color="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M10.94 8.81851C9.76843 9.99008 9.76843 11.8896 10.94 13.0612C11.3305 13.4517 11.3305 14.0848 10.94 14.4754C10.5495 14.8659 9.91631 14.8659 9.52579 14.4754C7.57317 12.5227 7.57317 9.35692 9.52579 7.4043L13.0613 3.86876C15.0139 1.91614 18.1798 1.91614 20.1324 3.86876C22.085 5.82138 22.085 8.98721 20.1324 10.9398L19.0398 12.0325C18.6492 12.423 18.0161 12.423 17.6255 12.0325C17.235 11.6419 17.235 11.0088 17.6255 10.6183L18.7182 9.52562C19.8898 8.35404 19.8898 6.45455 18.7182 5.28298C17.5466 4.1114 15.6471 4.1114 14.4755 5.28298L10.94 8.81851ZM13.061 15.1813C14.2325 14.0097 14.2325 12.1102 13.061 10.9387C12.6704 10.5481 12.6704 9.91497 13.061 9.52444C13.4515 9.13392 14.0846 9.13392 14.4752 9.52444C16.4278 11.4771 16.4278 14.6429 14.4752 16.5955L10.975 20.0957C9.02237 22.0483 5.85654 22.0483 3.90392 20.0957C1.9513 18.1431 1.9513 14.9772 3.90392 13.0246L4.92922 11.9993C5.31975 11.6088 5.95291 11.6088 6.34344 11.9993C6.73396 12.3898 6.73396 13.023 6.34344 13.4135L5.31813 14.4388C4.14656 15.6104 4.14656 17.5099 5.31813 18.6815C6.48971 19.853 8.3892 19.853 9.56077 18.6815L13.061 15.1813Z"></path>
                                 </svg>
                             </div>
                             <div>
-                                <p id="linkText">с.pw/j9G8aH5a</p>
+                                <p id="linkResultText"></p>
                             </div>
                         </a>
                     </div>
                 </div>
                 <div class="shortener__separate-text-container">
-                    <p>Нажмите <button id="copyBtn_1">сюда</button> чтобы скопировать короткую ссылку.</p>
+                    <p>Нажмите <button id="copyBtn_1">сюда</button>, чтобы скопировать короткую ссылку.</p>
+                </div>
+            </div>
+            <div id="section_3Container" class="shortener__section-container">
+                <div class="shortener__separate-text-container">
+                    <p>СТАТИСТИКА</p>
+                </div>
+                <div id="linesContainer" class="shortener__result-block-container"></div>
+                <div class="shortener__separate-text-container">
+                    <p>Мы собираем минимальную статистику о вашей короткой ссылке, которую вы можете посмотреть здесь в любой момент.</p>
+                </div>
+            </div>
+            <div id="section_4Container" class="shortener__section-container">
+                <div class="shortener__separate-text-container">
+                    <p>ЭТА СТРАНИЦА</p>
+                </div>
+                <div class="shortener__result-block-container">
+                    <div class="shortener__result-link-container">
+                        <a id="linkPageURL">
+                            <div>
+                                <svg fill="currentColor" viewBox="0 0 22 22">
+                                    <path color="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M10.94 8.81851C9.76843 9.99008 9.76843 11.8896 10.94 13.0612C11.3305 13.4517 11.3305 14.0848 10.94 14.4754C10.5495 14.8659 9.91631 14.8659 9.52579 14.4754C7.57317 12.5227 7.57317 9.35692 9.52579 7.4043L13.0613 3.86876C15.0139 1.91614 18.1798 1.91614 20.1324 3.86876C22.085 5.82138 22.085 8.98721 20.1324 10.9398L19.0398 12.0325C18.6492 12.423 18.0161 12.423 17.6255 12.0325C17.235 11.6419 17.235 11.0088 17.6255 10.6183L18.7182 9.52562C19.8898 8.35404 19.8898 6.45455 18.7182 5.28298C17.5466 4.1114 15.6471 4.1114 14.4755 5.28298L10.94 8.81851ZM13.061 15.1813C14.2325 14.0097 14.2325 12.1102 13.061 10.9387C12.6704 10.5481 12.6704 9.91497 13.061 9.52444C13.4515 9.13392 14.0846 9.13392 14.4752 9.52444C16.4278 11.4771 16.4278 14.6429 14.4752 16.5955L10.975 20.0957C9.02237 22.0483 5.85654 22.0483 3.90392 20.0957C1.9513 18.1431 1.9513 14.9772 3.90392 13.0246L4.92922 11.9993C5.31975 11.6088 5.95291 11.6088 6.34344 11.9993C6.73396 12.3898 6.73396 13.023 6.34344 13.4135L5.31813 14.4388C4.14656 15.6104 4.14656 17.5099 5.31813 18.6815C6.48971 19.853 8.3892 19.853 9.56077 18.6815L13.061 15.1813Z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p id="linkPageText"></p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="shortener__separate-text-container">
+                    <p>А эта ссылка ведёт на текущую страницу, где вы в любой момент можете посмотреть информацию и статистику по вашей короткой ссылке.<br>Нажмите <button id="copyBtn_2">сюда</button>, чтобы скопировать эту ссылку.</p>
                 </div>
             </div>
         </div>
