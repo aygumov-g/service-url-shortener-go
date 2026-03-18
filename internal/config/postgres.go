@@ -11,14 +11,10 @@ type Postgres struct {
 
 func (p Postgres) DSN() string {
 	return fmt.Sprintf(
-		// "postgres://%s:%s@%s/%s?sslmode=disable",
-		// p.dBUser,
-		// p.dBPassword,
-		// p.dBHost,
-		// p.dBName,
-		"postgres://%s:%s@localhost:15391/%s?sslmode=disable",
+		"postgres://%s:%s@%s/%s?sslmode=disable",
 		p.dBUser,
 		p.dBPassword,
+		p.dBHost,
 		p.dBName,
 	)
 }
