@@ -3,6 +3,7 @@ package create_link
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"net/http"
 
 	link_d "github.com/aygumov-g/service-url-shortener-go/internal/domain/link"
@@ -27,9 +28,11 @@ func (h *handler) Execute(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	code, err := h.create_linkUC.Execute(req.URL)
+	code, err := h.create_linkUC.Execute(r.Context(), req.URL)
 	if err != nil {
 		switch {
+		case errors.Is(err, link_d.ErrCustomCodeAlreadyExists):
+			http.Error(w, "custom code is already exists", http.StatusConflict)
 		case errors.Is(err, link_d.ErrCannotShortenLink):
 			http.Error(w, "cannot shorten link", http.StatusConflict)
 		case errors.Is(err, link_d.ErrLinkNotFound):
@@ -37,6 +40,7 @@ func (h *handler) Execute(w http.ResponseWriter, r *http.Request) {
 		case errors.Is(err, link_d.ErrUrlToLong):
 			http.Error(w, "url to long", http.StatusBadRequest)
 		default:
+			fmt.Println(err)
 			http.Error(w, "internal error", http.StatusInternalServerError)
 		}
 

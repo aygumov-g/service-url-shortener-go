@@ -5,45 +5,26 @@ import (
 )
 
 type Config struct {
-	App AppConfig
-	SCC ShortCodeConfig
-	DB  DBConfig
-}
-
-type AppConfig struct {
-	Port   string
-	Domain string
-}
-
-type ShortCodeConfig struct {
-	Alphabet string
-	Secret   string
-}
-
-type DBConfig struct {
-	Host     string
-	User     string
-	Password string
-	Name     string
-	SSLMode  string
+	App App
+	SCC ShortCode
+	DB  Postgres
 }
 
 func Load() *Config {
 	return &Config{
-		App: AppConfig{
+		App: App{
 			Port:   os.Getenv("APP_PORT"),
 			Domain: os.Getenv("APP_DOMAIN"),
 		},
-		SCC: ShortCodeConfig{
+		SCC: ShortCode{
 			Alphabet: os.Getenv("SHORT_CODE_ALPHABET"),
 			Secret:   os.Getenv("SHORT_CODE_SECRET"),
 		},
-		DB: DBConfig{
-			Host:     os.Getenv("POSTGRES_HOST"),
-			User:     os.Getenv("POSTGRES_USER"),
-			Password: os.Getenv("POSTGRES_PASSWORD"),
-			Name:     os.Getenv("POSTGRES_DB"),
-			SSLMode:  "disable",
+		DB: Postgres{
+			dBHost:     os.Getenv("POSTGRES_HOST"),
+			dBUser:     os.Getenv("POSTGRES_USER"),
+			dBPassword: os.Getenv("POSTGRES_PASSWORD"),
+			dBName:     os.Getenv("POSTGRES_DB"),
 		},
 	}
 }

@@ -19,7 +19,7 @@ func NewApp(ctx context.Context) (*App, error) {
 	cfg := config.Load()
 	log := logger.New()
 
-	db, err := db.New(cfg.DB)
+	db, err := db.New(ctx, cfg.DB.DSN())
 	if err != nil {
 		return nil, err
 	}
@@ -54,10 +54,7 @@ func (a *App) Shutdown(ctx context.Context) {
 		a.logger.Error("http server failed shutdown", "error", err)
 	}
 
-	err = a.db.Close()
-	if err != nil {
-		a.logger.Error("db failed shutdown", "error", err)
-	}
+	a.db.Close()
 
 	a.logger.Info("shutdown completed")
 }

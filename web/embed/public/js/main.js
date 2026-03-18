@@ -134,11 +134,10 @@ new class {
     };
     setPageLink(short_code, domain) {
         this.data.linkPageText.textContent = `${domain}/?s=${short_code}`;
-        this.data.linkPageURL.href = `https://${domain}/?s=${short_code}`;;
+        this.data.linkPageURL.href = `https://${domain}/?s=${short_code}`;
     };
-    liveTimeAgo(dateString) {
+    liveTimeAgo(unix) {
         const span = document.createElement("span");
-        const start = new Date(dateString);
         const units = [
             ["год", 31536000],
             ["день", 86400],
@@ -160,13 +159,9 @@ new class {
             return f[2];
         };
         function update() {
-            let diff = Math.floor((new Date() - start) / 1000);
-            if (diff < 0) {
-                span.textContent = "неизвестно";
-                return;
-            };
+            let diff = Math.floor(Date.now() / 1000) - unix;
             if (diff < 1) {
-                span.textContent = "только что";
+                span.textContent = `неизвестно`;
                 return;
             };
             for (const [name, sec] of units) {

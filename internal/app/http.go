@@ -5,7 +5,6 @@ import (
 	"net/http"
 
 	"github.com/aygumov-g/service-url-shortener-go/internal/config"
-	link_d "github.com/aygumov-g/service-url-shortener-go/internal/domain/link"
 	"github.com/aygumov-g/service-url-shortener-go/internal/infrastructure/db"
 	link_db "github.com/aygumov-g/service-url-shortener-go/internal/repository/link"
 	create_link_handler "github.com/aygumov-g/service-url-shortener-go/internal/transport/http/handlers/create_link"
@@ -22,14 +21,7 @@ import (
 	"github.com/aygumov-g/service-url-shortener-go/web/embed"
 )
 
-func buildHTTP(
-	cfg *config.Config,
-	db *db.Storage,
-) (*server.Server, error) {
-	if err := db.Get().AutoMigrate(&link_d.Link{}); err != nil {
-		return nil, fmt.Errorf("migration failed: %w", err)
-	}
-
+func buildHTTP(cfg *config.Config, db *db.Storage) (*server.Server, error) {
 	gen, err := shortcode.NewEncoder(cfg.SCC.Alphabet, cfg.SCC.Secret)
 	if err != nil {
 		return nil, fmt.Errorf("encoder failed: %w", err)
@@ -39,7 +31,7 @@ func buildHTTP(
 
 	linkRepo := link_db.NewRepository(db.Get())
 
-	get_linkUsecase := get_link_uc.NewGetLink(linkRepo, gen, clk)
+	get_linkUsecase := get_link_uc.NewGetLink(linkRepo, gen)
 	update_linkUsecase := update_link_uc.NewUpdateLink(linkRepo, clk)
 	create_linkUsecase := create_link_uc.NewCreateLink(linkRepo, gen, clk, cfg.App.Domain)
 

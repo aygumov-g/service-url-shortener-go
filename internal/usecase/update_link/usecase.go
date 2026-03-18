@@ -1,5 +1,7 @@
 package update_link
 
+import "context"
+
 type UpdateLink struct {
 	linksRepo LinkRepository
 	clk       Clock
@@ -15,6 +17,6 @@ func NewUpdateLink(
 	}
 }
 
-func (uc *UpdateLink) Execute(id int64) error {
-	return uc.linksRepo.Update(id, uc.clk.Now())
+func (uc *UpdateLink) Execute(ctx context.Context, id int64) error {
+	return uc.linksRepo.Update(ctx, id, uc.clk.Now())
 }

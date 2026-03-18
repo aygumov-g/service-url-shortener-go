@@ -1,10 +1,13 @@
 :root {
-    --accent-main-color: rgb(255, 100, 0);
-    --accent-color-1: color-mix(in srgb, var(--accent-main-color), black 93%);
+    /*--accent-main-color: rgb(255, 100, 0);*/
+    --accent-main-color: rgb(255, 255, 255);
+    --accent-color-1: color-mix(in srgb, var(--accent-main-color), black 92%);
     --accent-color-2: color-mix(in srgb, var(--accent-main-color), black 80%);
     --accent-color-3: color-mix(in srgb, var(--accent-main-color), black 83%);
-    --accent-color-4: color-mix(in srgb, var(--accent-main-color), black 15%);
-    --accent-color-5: color-mix(in srgb, var(--accent-main-color), white 45%);
+    /*--accent-color-4: color-mix(in srgb, var(--accent-main-color), black 15%);*/
+    --accent-color-4: color-mix(in srgb, rgb(255, 100, 0), black 10%);
+    /*--accent-color-5: color-mix(in srgb, var(--accent-main-color), white 45%);*/
+    --accent-color-5: color-mix(in srgb, rgb(255, 100, 0), white 45%);
     --error-color: rgb(255, 30, 30);
     --white-color: rgb(255, 255, 255);
     --gray-color: rgb(110, 110, 110);
@@ -75,13 +78,13 @@ div.shortener__form-container input {
     color: var(--white-color);
     padding: 17px;
     font-size: 27px;
-    background-color: var( --accent-color-2);
+    background-color: var( --accent-color-3);
     border-radius: 15px;
     border: none;
 }
 
 div.shortener__form-container input:focus {
-    background-color: var( --accent-color-3);
+    background-color: var(--accent-color-2);
     outline: none;
     border: none;
 }
@@ -105,6 +108,7 @@ div.shortener__result-block-container hr {
 div.shortener__result-link-container {
     padding: 17px;
     font-size: 27px;
+    font-weight: bold;
 }
 
 div.shortener__result-link-container a {

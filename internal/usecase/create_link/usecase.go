@@ -1,6 +1,7 @@
 package link
 
 import (
+	"context"
 	"net/url"
 	"strings"
 
@@ -30,7 +31,7 @@ func NewCreateLink(
 	}
 }
 
-func (uc *CreateLink) Execute(original string) (string, error) {
+func (uc *CreateLink) Execute(ctx context.Context, original string) (string, error) {
 	if len(original) > 5000 {
 		return "", link_d.ErrUrlToLong
 	}
@@ -60,10 +61,11 @@ func (uc *CreateLink) Execute(original string) (string, error) {
 
 	link := &link_d.Link{
 		OriginalURL: original,
+		ClickCount:  0,
 		CreatedAt:   uc.clk.Now(),
 	}
 
-	if err := uc.linksRepo.Create(link); err != nil {
+	if err := uc.linksRepo.Create(ctx, link); err != nil {
 		return "", err
 	}
 

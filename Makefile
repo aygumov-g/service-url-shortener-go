@@ -12,3 +12,6 @@ logs:
 
 restart:
 	docker compose restart
+
+run:
+	go run cmd/app/main.go

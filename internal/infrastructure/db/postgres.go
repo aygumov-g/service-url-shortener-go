@@ -1,55 +1,50 @@
 package db
 
 import (
-	"fmt"
+	"context"
+	"errors"
 	"time"
 
-	"github.com/aygumov-g/service-url-shortener-go/internal/config"
-	"gorm.io/driver/postgres"
-	"gorm.io/gorm"
-	"gorm.io/gorm/logger"
+	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 type Storage struct {
-	db *gorm.DB
+	Pool *pgxpool.Pool
 }
 
-func New(cfg config.DBConfig) (*Storage, error) {
-	db, err := gorm.Open(postgres.Open(fmt.Sprintf(
-		"host=%s user=%s password=%s dbname=%s sslmode=%s ",
-		cfg.Host,
-		cfg.User,
-		cfg.Password,
-		cfg.Name,
-		cfg.SSLMode,
-	)), &gorm.Config{
-		Logger: logger.Default.LogMode(logger.Silent),
-	})
+func New(ctx context.Context, dsn string) (*Storage, error) {
+	if dsn == "" {
+		return nil, errors.New("postgres dsn is empty")
+	}
+
+	cfg, err := pgxpool.ParseConfig(dsn)
 	if err != nil {
 		return nil, err
 	}
 
-	sqlDB, err := db.DB()
+	cfg.MaxConns = 50
+	cfg.MinConns = 10
+	cfg.MaxConnLifetime = 30 * time.Minute
+	cfg.MaxConnIdleTime = 15 * time.Minute
+	cfg.HealthCheckPeriod = time.Minute
+
+	pool, err := pgxpool.NewWithConfig(ctx, cfg)
 	if err != nil {
 		return nil, err
 	}
 
-	sqlDB.SetMaxOpenConns(50)
-	sqlDB.SetMaxIdleConns(10)
-	sqlDB.SetConnMaxLifetime(time.Hour)
-
-	return &Storage{db: db}, nil
-}
-
-func (s *Storage) Get() *gorm.DB {
-	return s.db
-}
-
-func (s *Storage) Close() error {
-	sqlDB, err := s.db.DB()
-	if err != nil {
-		return err
+	if err := pool.Ping(ctx); err != nil {
+		pool.Close()
+		return nil, err
 	}
 
-	return sqlDB.Close()
+	return &Storage{Pool: pool}, nil
+}
+
+func (s *Storage) Get() *pgxpool.Pool {
+	return s.Pool
+}
+
+func (s *Storage) Close() {
+	s.Pool.Close()
 }

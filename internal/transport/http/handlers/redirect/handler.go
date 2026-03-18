@@ -20,13 +20,13 @@ func NewHandler(get_linkUC GetLinkUsecase, update_linkUC UpdateLinkUsecase) *han
 
 func (h *handler) Execute(w http.ResponseWriter, r *http.Request) {
 	code := chi.URLParam(r, "code")
-	link, err := h.get_linkUC.Execute(code)
+	link, err := h.get_linkUC.Execute(r.Context(), code)
 	if err != nil {
 		http.Error(w, "link not found", http.StatusNotFound)
 		return
 	}
 
-	if err := h.update_linkUC.Execute(link.ID); err != nil {
+	if err := h.update_linkUC.Execute(r.Context(), link.ID); err != nil {
 		http.Error(w, "internal error", http.StatusInternalServerError)
 		return
 	}

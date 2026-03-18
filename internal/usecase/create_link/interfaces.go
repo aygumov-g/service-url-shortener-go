@@ -1,14 +1,15 @@
 package link
 
 import (
+	"context"
 	"time"
 
 	link_d "github.com/aygumov-g/service-url-shortener-go/internal/domain/link"
 )
 
 type LinkRepository interface {
-	Create(link *link_d.Link) error
-	GetByID(id int64) (*link_d.Link, error)
+	Create(ctx context.Context, link *link_d.Link) error
+	GetByID(ctx context.Context, id int64) (*link_d.Link, error)
 }
 
 type Generator interface {

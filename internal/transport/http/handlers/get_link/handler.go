@@ -21,7 +21,7 @@ func NewHandler(get_linkUC GetLinkUsecase, domain string) *handler {
 
 func (h *handler) Execute(w http.ResponseWriter, r *http.Request) {
 	code := chi.URLParam(r, "code")
-	link, err := h.get_linkUC.Execute(code)
+	link, err := h.get_linkUC.Execute(r.Context(), code)
 	if err != nil {
 		http.Error(w, "link not found", http.StatusNotFound)
 		return

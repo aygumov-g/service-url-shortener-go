@@ -9,5 +9,5 @@ func NewSystemClock() *systemClock {
 }
 
 func (c *systemClock) Now() time.Time {
-	return time.Now().UTC().Add(3 * time.Hour)
+	return time.Now().UTC()
 }
