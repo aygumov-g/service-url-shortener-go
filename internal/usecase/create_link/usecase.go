@@ -32,6 +32,10 @@ func NewCreateLink(
 }
 
 func (uc *CreateLink) Execute(ctx context.Context, original string) (string, error) {
+	if original == "" || !strings.Contains(original, ".") {
+		return "", link_d.ErrCannotShortenLink
+	}
+
 	if len(original) > 5000 {
 		return "", link_d.ErrUrlToLong
 	}

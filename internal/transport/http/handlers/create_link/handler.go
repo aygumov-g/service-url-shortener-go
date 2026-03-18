@@ -35,8 +35,6 @@ func (h *handler) Execute(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, "custom code is already exists", http.StatusConflict)
 		case errors.Is(err, link_d.ErrCannotShortenLink):
 			http.Error(w, "cannot shorten link", http.StatusConflict)
-		case errors.Is(err, link_d.ErrLinkNotFound):
-			http.Error(w, "link not found", http.StatusNotFound)
 		case errors.Is(err, link_d.ErrUrlToLong):
 			http.Error(w, "url to long", http.StatusBadRequest)
 		default:

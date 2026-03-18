@@ -14,14 +14,7 @@ new class {
             this.hideSection_3Container();
             this.hideSection_4Container();
         });
-        this.data.postButton.addEventListener("click", () => {
-            if (!this.data.input.value.trim().length === 0 || !this.data.input.value.includes(".")) {
-                this.showErrorText("Некорректная ссылка");
-                this.hideFooterTextContainer();
-            } else {
-                this.post(this.data.input.value);
-            };
-        });
+        this.data.postButton.addEventListener("click", () => this.post(this.data.input.value));
         this.data.copyButton_1.addEventListener("click", () => this.copyLink(this.data.linkResultURL.href));
         this.data.copyButton_2.addEventListener("click", () => this.copyLink(this.data.linkPageURL.href));
         this.hideErrorText();
@@ -190,7 +183,7 @@ new class {
             if (response.ok) {
                 document.location.href = `/?s=${(await response.json())["short_code"]}`;
             } else {
-                this.showErrorText(`Ошибка с сервера: ${await response.text()}`);
+                this.showErrorText(await response.text());
                 this.hideFooterTextContainer();
             }
         } catch {
